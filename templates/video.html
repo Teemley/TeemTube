@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ video[1] }}{% endblock %}
+
+{% block content %}
+    <a href="/">TeemTube</a>
+    <h1>{{ video[1] }}</h1>
+    <p>Author: <a href="/channel/{{ video[6] }}">{{ channel[1] }}</a></p>
+    <p>{{ video[2] }}</p>
+    <video width="640" height="480" controls>
+        <source src="/static/videos/{{ video[6] }}_{{ video[5] }}.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p>Likes: {{ video[3] }} | Dislikes: {{ video[4] }}</p>
+    <a href="/like/{{ video[0] }}">Like</a>
+    <a href="/dislike/{{ video[0] }}">Dislike</a>
+    <h2>Comments</h2>
+    {% if 'channel_name' in session %}
+        <form method="POST">
+            <textarea name="comment" required></textarea>
+            <button type="submit">Add Comment</button>
+        </form>
+    {% endif %}
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <img src="/static/channels/{{ comment[4] }}" alt="Channel Image" width="50" height="50">
+                <strong>{{ comment[3] }}</strong>: {{ comment[1] }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

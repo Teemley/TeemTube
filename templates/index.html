@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}TeemTube{% endblock %}
+
+{% block content %}
+    <h1>TeemTube</h1>
+    <a href="/create_channel">Create Channel</a>
+    <a href="/login">Login</a>
+    <a href="/upload_video">Upload Video</a>
+    <h2>Top Videos</h2>
+    <div class="video-grid">
+        {% for video in videos %}
+            <div class="video-item">
+                <img src="/static/previews/{{ video[6] }}_{{ video[5] }}.png" alt="Preview" width="200" height="150">
+                <a href="/video/{{ video[0] }}">{{ video[1] }}</a>
+                <p>{{ video[2] }}</p>
+                <p>Likes: {{ video[3] }} | Dislikes: {{ video[4] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <h2>Random Videos</h2>
+    <div class="video-grid">
+        {% for video in random_videos %}
+            <div class="video-item">
+                <img src="/static/previews/{{ video[6] }}_{{ video[5] }}.png" alt="Preview" width="200" height="150">
+                <a href="/video/{{ video[0] }}">{{ video[1] }}</a>
+                <p>{{ video[2] }}</p>
+                <p>Likes: {{ video[3] }} | Dislikes: {{ video[4] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

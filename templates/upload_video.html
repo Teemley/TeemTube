@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Video{% endblock %}
+
+{% block content %}
+    <h1>Upload Video</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" enctype="multipart/form-data">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+        <label for="video_file">Video File:</label>
+        <input type="file" id="video_file" name="video_file" required>
+        <label for="preview_file">Preview Image:</label>
+        <input type="file" id="preview_file" name="preview_file" required>
+        <button type="submit">Upload</button>
+    </form>
+{% endblock %}
