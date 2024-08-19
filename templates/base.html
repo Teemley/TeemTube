@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TeemTube{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+        }
+        header a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        main {
+            padding: 20px;
+        }
+        .video-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .video-item {
+            flex: 1 1 calc(20% - 20px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .video-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .video-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .video-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="/">TeemTube</a>
+        {% if 'channel_name' in session %}
+            <div style="float: right;">
+                <img src="/static/channels/{{ session['channel_image'] }}" alt="Channel Image" width="50" height="50">
+                <span>{{ session['channel_name'] }}</span>
+            </div>
+        {% endif %}
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
